@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class TestController {
 
-    @RequestMapping
+    @RequestMapping(value = "/")
     @ResponseBody
     public ResponseEntity<String> function(){
         return new ResponseEntity<>("Hello from controller", HttpStatus.OK);
