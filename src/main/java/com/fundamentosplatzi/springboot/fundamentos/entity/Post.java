@@ -3,11 +3,13 @@ package com.fundamentosplatzi.springboot.fundamentos.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "post")
 @Getter
 @Setter
+@ToString
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

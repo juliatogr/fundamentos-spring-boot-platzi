@@ -16,6 +16,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cglib.core.Local;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -54,9 +55,22 @@ public class FundamentosApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// ejemplosAnteriores();
 		saveUsersInDataBase();
+		getInformationJpqlFromUser();
 
 	}
 
+	private void getInformationJpqlFromUser(){
+		LOGGER.info("Usuario con email user5@domain.com " +
+				userRepository.findByUserEmail("user5@domain.com")
+						.orElseThrow(()-> new RuntimeException("No se encontró el usuario")));
+
+/*		LOGGER.info("Usuario con email noexiste@domain.com" +
+				userRepository.findByUserEmail("noexiste@domain.com")
+						.orElseThrow(()-> new RuntimeException("No se encontró el usuario")));*/
+
+		userRepository.findAndSort("user", Sort.by("id").ascending())
+				.forEach(u-> LOGGER.info("usuario con método sort" + u));
+	}
 	private void saveUsersInDataBase(){
 		User user1 = new User("John", "john@domain.com", LocalDate.of(2021,3,20));
 		User user2 = new User("Julie", "julie@domain.com", LocalDate.of(2021,5,21));
