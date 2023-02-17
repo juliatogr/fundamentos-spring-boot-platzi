@@ -40,4 +40,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<UserDto> getAllByBirthDateAndEmail(@Param("parametroFecha") LocalDate birthDate, @Param("parametroEmail") String email);
 
+    List<User> findAll();
 }
