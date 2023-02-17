@@ -1,5 +1,6 @@
 package com.fundamentosplatzi.springboot.fundamentos.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ public class Post {
     private String description;
 
     @ManyToOne
+    @JsonBackReference
     private User user;
 
     public Post() {
